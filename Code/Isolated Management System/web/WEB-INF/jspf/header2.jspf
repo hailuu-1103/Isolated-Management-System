@@ -57,7 +57,8 @@
                         <span>${userLogin.getUserName()}</span>
                         <div class="user-info">
                             <ul class="user-info__list">
-                                <li class="user-info__item"><a href="">Tài khoản của tôi</a></li>
+                                <li class="user-info__item"><a href="<%=request.getContextPath()%>/Accounts/accountDetail.jsp">Tài khoản của tôi</a></li>
+                                <li class="user-info__item"><a href="<%=request.getContextPath()%>/Accounts/ChangePassword.jsp">Đổi mật khẩu</a></li>
                             </ul>
                         </div>
                     </div>                   

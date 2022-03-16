@@ -40,7 +40,7 @@
         <servlet-name>UpdatePatient</servlet-name>
         <servlet-class>controller.Patient.UpdatePatient</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ViewRoom</servlet-name>
         <servlet-class>controller.room.ViewRoom</servlet-class>
     </servlet>
@@ -79,6 +79,10 @@
     <servlet>
         <servlet-name>DischargePatient</servlet-name>
         <servlet-class>controller.Patient.DischargePatient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAccount</servlet-name>
+        <servlet-class>controller.base.UpdateAccount</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewRoom</servlet-name>
@@ -136,7 +140,7 @@
         <servlet-name>ViewDetailPatient</servlet-name>
         <url-pattern>/Patient/view-detail</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DischargePatient</servlet-name>
         <url-pattern>/Patient/discharge</url-pattern>
     </servlet-mapping>
@@ -152,6 +156,10 @@
         <servlet-name>ViewAllPatient</servlet-name>
         <url-pattern>/Patient/view-all</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccount</servlet-name>
+        <url-pattern>/Accounts/update</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             60
@@ -164,6 +172,8 @@
         </jsp-property-group>
         <jsp-property-group>
             <description>JSP configuration for the system </description>
+            <url-pattern>/Accounts/accountDetail.jsp</url-pattern>
+            <url-pattern>/Accounts/ChangePassword.jsp</url-pattern>
             <url-pattern>/index.jsp</url-pattern>
             <url-pattern>/login.jsp</url-pattern>
             <url-pattern>/forgot_password.jsp</url-pattern>
