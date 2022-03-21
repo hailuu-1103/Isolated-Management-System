@@ -10,7 +10,7 @@
     </div>
     <div class="form-container form-container_add">
         <div>
-            <form action="AddNurse" method="GET" id="form-xn" class="form">
+            <form action="AddDoctor" method="GET" id="form-xn" class="form">
                 <div class="form-group">
                     <label for="ho_ten" class="form-label">Họ tên nhân viên:</label>
                     <input id="ho_ten" class="form-control" name="name" type="text" required>
@@ -48,14 +48,7 @@
                     <input id="so_dien_thoai" class="form-control" name="email" type="text" >
                     <span class="form-message"></span>
                 </div>
-                <div class="form-group">
-                    <label for="loai" class="form-label">khu vực:</label>
-                    <select name="loai" id="loai" class="form-control">
-                        <option value="1" selected="selected">dom A</option>
-                        <option value="2">dom B</option>
-                        <option value="2">dom C</option>
-                    </select>
-                </div>
+               
                 <button type = "submit" class="form-submit"><i class="far fa-save"></i><span>Lưu</span></button>
             </form>
         </div>
@@ -75,3 +68,4 @@
         </div>
     </div>
 </div>
+

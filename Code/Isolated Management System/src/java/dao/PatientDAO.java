@@ -283,9 +283,12 @@ public class PatientDAO implements DAO<Patient> {
         update(patient, hashTable);
     }
     
-    public List<Patient> SearchByKey(String key, int offset, int noOfRecords) {
-
-        return null;
+  public List<Patient> SearchByKey(String key) {
+        
+        String sql = "SELECT * from patient where full_name like '%" + key + "%'";
+        List<Patient> qq = new ArrayList<>();
+        qq = parse(sql);
+        return qq;
     }
 
     public static void main(String[] args) throws ParseException {

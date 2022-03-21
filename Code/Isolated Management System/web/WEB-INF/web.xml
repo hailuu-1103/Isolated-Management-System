@@ -13,6 +13,10 @@
         <servlet-class>controller.base.HomeServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SearchPatient</servlet-name>
+        <servlet-class>controller.base.SearchPatient</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>FeedBackServlet</servlet-name>
         <servlet-class>controller.base.FeedBackServlet</servlet-class>
     </servlet>
@@ -84,6 +88,46 @@
         <servlet-name>UpdateAccount</servlet-name>
         <servlet-class>controller.base.UpdateAccount</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>ViewAccountNurse</servlet-name>
+        <servlet-class>controller.accountManager.ViewAccountNurse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAccountDoctor</servlet-name>
+        <servlet-class>controller.accountManager.ViewAccountDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNurse</servlet-name>
+        <servlet-class>controller.accountManager.AddNurse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDoctor</servlet-name>
+        <servlet-class>controller.accountManager.AddDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewDetailNurse</servlet-name>
+        <servlet-class>controller.accountManager.ViewDetailNurse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewDetailDoctor</servlet-name>
+        <servlet-class>controller.accountManager.ViewDetailDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccount</servlet-name>
+        <servlet-class>controller.accountManager.DeleteAccountNurse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountDoctor</servlet-name>
+        <servlet-class>controller.accountManager.DeleteAccountDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListFeedBack</servlet-name>
+        <servlet-class>feedback.ListFeedBack</servlet-class>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>SearchPatient</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewRoom</servlet-name>
         <url-pattern>/Room/list</url-pattern>
@@ -160,6 +204,42 @@
         <servlet-name>UpdateAccount</servlet-name>
         <url-pattern>/Accounts/update</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAccountNurse</servlet-name>
+        <url-pattern>/Accounts/view-list-nurse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAccountDoctor</servlet-name>
+        <url-pattern>/Accounts/ViewAccountDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNurse</servlet-name>
+        <url-pattern>/Accounts/AddNurse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDoctor</servlet-name>
+        <url-pattern>/Accounts/AddDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDetailNurse</servlet-name>
+        <url-pattern>/Accounts/ViewDetailNurse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDetailDoctor</servlet-name>
+        <url-pattern>/Accounts/ViewDetailDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccount</servlet-name>
+        <url-pattern>/Accounts/DeleteAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountDoctor</servlet-name>
+        <url-pattern>/Accounts/DeleteAccountDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListFeedBack</servlet-name>
+        <url-pattern>/ListFeedBack</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             60
@@ -191,6 +271,7 @@
             <url-pattern>/listfeedback.jsp</url-pattern>
             <url-pattern>/Patient/*</url-pattern>
             <url-pattern>/Room/*</url-pattern>
+            <url-pattern>/Accounts/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/header2.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>

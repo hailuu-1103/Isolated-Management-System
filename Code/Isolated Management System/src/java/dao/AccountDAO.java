@@ -164,13 +164,18 @@ public class AccountDAO implements DAO<Account> {
 
     @Override
     public void delete(Account t) {
-
+        try {
+            String sql = "delete from account where account_id = " + t.getAccountId();
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (SQLException x) {
+            x.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
         AccountDAO dao = new AccountDAO();
-        Account a = dao.find("longcute1234");
-        dao.updateForgot(a);
-        System.out.println(dao.NEW_PASSWORD);
+        String password = new Utils().md5("123456");
+        System.out.println("Hello");
     }
 }

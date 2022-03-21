@@ -165,7 +165,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[doctor](
-	[id_doctor] [int] NOT NULL,
+	[id_doctor] [int] IDENTITY(1,1) NOT NULL,
 	[doctor_name] [nvarchar](255) NOT NULL,
 	[phone] [int] NOT NULL,
 	[fullname] [nvarchar](255) NOT NULL,
@@ -210,7 +210,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[nurse](
-	[id_nurse] [int] NOT NULL,
+	[id_nurse] [int] IDENTITY(1,1) NOT NULL,
 	[name_nurse] [nvarchar](255) NOT NULL,
 	[phone] [int] NOT NULL,
 	[id_account] [int] NOT NULL,

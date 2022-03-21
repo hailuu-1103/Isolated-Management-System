@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import utils.Configs;
 
 public class DBcontext {
-    private static Connection connect;
+    private static Connection connect;//acc
     
     public static Connection getConnection() {
         if (connect != null) return connect;

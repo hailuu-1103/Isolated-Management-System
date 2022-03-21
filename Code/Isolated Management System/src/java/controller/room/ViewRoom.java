@@ -37,7 +37,6 @@ public class ViewRoom extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-
         HttpSession ss = request.getSession();
         Nurse nurse = (Nurse) ss.getAttribute("nurse");
         int page = 1;

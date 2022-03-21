@@ -10,32 +10,31 @@ package entity;
  * @author Admin
  */
 public class Doctor {
-
-    private int doctorId;
-    private String doctorName;
-    private int phone;
-    private String fullName;
-    private int accountId;
-    private String address;
+    int doctor;
+    String doctorName;
+    int phone;
+    String fullName;
+    int idAccount;
+    String Address;
 
     public Doctor() {
     }
 
-    public Doctor(int doctorId, String doctorName, int phone, String fullName, int accountId, String address) {
-        this.doctorId = doctorId;
+    public Doctor(int doctor, String doctorName, int phone, String fullName, int idAccount, String Address) {
+        this.doctor = doctor;
         this.doctorName = doctorName;
         this.phone = phone;
         this.fullName = fullName;
-        this.accountId = accountId;
-        this.address = address;
+        this.idAccount = idAccount;
+        this.Address = Address;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public int getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(int doctor) {
+        this.doctor = doctor;
     }
 
     public String getDoctorName() {
@@ -62,25 +61,26 @@ public class Doctor {
         this.fullName = fullName;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public int getIdAccount() {
+        return idAccount;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setIdAccount(int idAccount) {
+        this.idAccount = idAccount;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
 
     @Override
     public String toString() {
-        return "Doctor{" + "doctorId=" + doctorId + ", doctorName=" + doctorName + ", phone=" + phone + ", fullName=" + fullName + ", accountId=" + accountId + ", address=" + address + '}';
+        return "Doctor{" + "doctor=" + doctor + ", doctorName=" + doctorName + ", phone=" + phone + ", fullName=" + fullName + ", idAccount=" + idAccount + ", Address=" + Address + '}';
     }
-
+    
+    
 }

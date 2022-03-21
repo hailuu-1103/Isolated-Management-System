@@ -1,8 +1,4 @@
-<%-- 
-    Document   : view-detail
-    Created on : May 8, 2021, 11:38:08 PM
-    Author     : CHUNG
---%>
+
 
 <%@page import="utils.Utils"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -16,16 +12,17 @@
     <div class="content-body">
         <div>
             <div class="content-header__info content-header__account">
-                <span>Mã tài khoản: ${account.getIdTaiKhoan()}</span>
-                <span>Họ và tên: ${account.getTenNguoiDung()}</span>
+                <span>Mã tài khoản: ${account.getAccountId()}</span>
+                <span>Họ và tên: ${doctor.getFullName()}</span>
+                <span style="color: blue;font-size: 2rem;font-weight: 500;">Tên đăng nhập: ${account.getUserName()}</span>
             </div>
 
             <div class="content-middle"> 
                 <div class="content-middle__lylich">
                     <span class="info-label">Lý lịch cá nhân</span>
                     <ul class="info-detail">
-                        <li>Số điện thoại: ${account.getSoDienThoai()}</li>
-                        <li>Loại tài khoản: ${account.getLoaiTaiKhoan().getTenLoaiTaiKhoan()}
+                        <li>Số điện thoại: ${doctor.getPhone()}</li>
+                        <li>Địa chỉ: ${doctor.getAddress()}
                     </ul>
                 </div>
             </div>
@@ -33,10 +30,5 @@
         <div><img class="content-img" src="<%=request.getContextPath()%>/${initParam.imgPath}${account.getAvatar()}"/></div>
     </div>
 
-    <div class="content-btn">
-
-        <a href="<%=request.getContextPath()%>/NguoiCachLy/delete?id=${nguoi.getIdNguoiCachLy()}" style="background-color: red;">
-            <i class="fas fa-trash-alt"></i> Xóa
-        </a>
-    </div>
+   
 </div>
