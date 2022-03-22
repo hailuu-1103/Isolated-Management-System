@@ -6,6 +6,7 @@
 package controller.base;
 
 import dao.PatientDAO;
+import dao.RoomDAO;
 import entity.Account;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,7 @@ public class HomeServlet extends HttpServlet {
 
         HttpSession ss = request.getSession();
         PatientDAO patientDAO = new PatientDAO();
+        RoomDAO roomDAO = new RoomDAO();
         Account account = (Account) ss.getAttribute("userLogin");
         Notification noti = null;
         RequestDispatcher rt = null;
@@ -53,13 +55,17 @@ public class HomeServlet extends HttpServlet {
         for (int i = 5; i >= 0; i--) {
             dates[index++] = formatter.format(now.minus(i, ChronoUnit.DAYS));
         }
-
-
         int[] arrPatient = new int[dates.length]; // New Patients in given date
         int newPatientWeek = patientDAO.getPatientsInDuration(7); // New Patients in 1 week
         for (int i = 0; i < dates.length; i++) {
             arrPatient[i] = patientDAO.getNuPatientsInDate(dates[i]);
         }
+        int total_bed = roomDAO.getAllBed();
+        int total_patient = patientDAO.getTotalPatients();
+        int available_bed = total_bed - total_patient;
+        request.setAttribute("totalPatient", total_patient);
+        request.setAttribute("availableBed", available_bed);
+        request.setAttribute("totalBed", total_bed);
         request.setAttribute("newWeek", newPatientWeek);
         request.setAttribute("dates", dates);
         request.setAttribute("new", arrPatient);

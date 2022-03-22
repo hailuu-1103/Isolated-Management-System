@@ -16,16 +16,16 @@ public class Report {
     private int id_report;
     private String content;
     private Timestamp createDate;
-    private int idPatient;
+    private Patient patient;
 
     public Report() {
     }
 
-    public Report(int id_report, String content, Timestamp createDate, int idPatient) {
+    public Report(int id_report, String content, Timestamp createDate, Patient patient) {
         this.id_report = id_report;
         this.content = content;
         this.createDate = createDate;
-        this.idPatient = idPatient;
+        this.patient = patient;
     }
 
     public int getId_report() {
@@ -52,17 +52,16 @@ public class Report {
         this.createDate = createDate;
     }
 
-    public int getIdPatient() {
-        return idPatient;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setIdPatient(int idPatient) {
-        this.idPatient = idPatient;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     @Override
     public String toString() {
-        return "Report{" + "id_report=" + id_report + ", content=" + content + ", createDate=" + createDate + ", idPatient=" + idPatient + '}';
+        return "Report{" + "id_report=" + id_report + ", content=" + content + ", createDate=" + createDate + ", patient=" + patient + '}';
     }
-
 }

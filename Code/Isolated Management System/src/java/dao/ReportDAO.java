@@ -82,7 +82,7 @@ public class ReportDAO implements DAO<Report> {
                 PreparedStatement prep = conn.prepareStatement(SQL_INSERT)) {
             prep.setString(1, t.getContent());
             prep.setTimestamp(2, t.getCreateDate());
-//            prep.setInt(3, t.getPatient().getPatientId());
+            prep.setInt(3, t.getPatient().getPatientId());
             prep.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReportDAO.class.getName()).log(Level.SEVERE, SQL_INSERT, ex);

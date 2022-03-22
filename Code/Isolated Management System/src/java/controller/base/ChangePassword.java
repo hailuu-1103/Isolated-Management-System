@@ -5,29 +5,25 @@
  */
 package controller.base;
 
-import dao.PatientDAO;
-import dao.ReportDAO;
+import dao.AccountDAO;
 import entity.Account;
-import entity.Patient;
-import entity.Report;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.Hashtable;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import utils.Utils;
+import utils.Notification;
+import static utils.Utils.md5;
 
 /**
  *
  * @author Admin
  */
-public class FeedBackServlet extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,10 +42,10 @@ public class FeedBackServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet FeedBackServlet</title>");
+            out.println("<title>Servlet ChangePassword</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet FeedBackServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangePassword at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,10 +63,7 @@ public class FeedBackServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        RequestDispatcher rt = request.getRequestDispatcher("feedback.jsp");
-        rt.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -84,29 +77,29 @@ public class FeedBackServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        request.setCharacterEncoding("UTF-8");
-//        String content = request.getParameter("report");
-//        PatientDAO patientDAO = new PatientDAO();
-//        ReportDAO re = new ReportDAO();
-//        PrintWriter out = response.getWriter();
-//
-//        Timestamp date = new Timestamp(System.currentTimeMillis());
-//
-//        Report report = new Report();
-//        report.setContent(content);
-//        report.setCreateDate(date);
-//
-//        HttpSession session = request.getSession();
-//        Account userLogin = (Account) session.getAttribute("userLogin");
-//        Patient patient = patientDAO.getPatientByAccountId(userLogin.getAccountId());
-//        report.setIdPatient(userLogin.getPatient().getPatientId());
-//        re.create(report);
-//       
-//        List<Report> list = re.getAllByPatientId(patient.getPatientId());
-//        request.setAttribute("list", list);
-//        RequestDispatcher rt = request.getRequestDispatcher("listfeedback.jsp");
-//        rt.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String current_pass = request.getParameter("current_pass");
+        String new_pass = request.getParameter("new_pass");
+        String new2_pass = request.getParameter("new2_pass");
+        HttpSession session = request.getSession();
+        Account user = (Account) session.getAttribute("userLogin");
+        String current_pass_md5= md5(current_pass);
+        String new_pass_md5 = md5(new_pass);
+        if(current_pass_md5.equals(user.getPassword())){
+            Hashtable<String, String>my_dict = new Hashtable<>();
+            my_dict.put("password", new_pass_md5);
+            AccountDAO tkDAO = new AccountDAO();
+            tkDAO.update(user, my_dict);
+            session.setAttribute("userLogin", tkDAO.get(user.getAccountId()));
+            
+            response.sendRedirect("../logout.jsp");
+        }else {
+            Notification noti = new Notification("Error", "Lỗi xảy ra.<br/> Vui lòng xem lại mật khẩu của bạn", "error");
+            request.setAttribute("notify", noti);
+            RequestDispatcher r1 = request.getRequestDispatcher("ChangePassword.jsp");
+            r1.forward(request, response);
+        }
     }
 
     /**

@@ -85,47 +85,45 @@ public class SearchPatient extends HttpServlet {
         String key = request.getParameter("key");
         HttpSession ss = request.getSession();
         Account user = (Account) ss.getAttribute("userLogin");
-        out.print(key);
-        out.print(user);
-//        if (user != null) {
-//            if (key == null || "".equals(key)) {
-//                response.sendRedirect("home.jsp");
-//            } else {
-//                int page = 1;
-//                int recordsPerPage = 10;
-//                if (request.getParameter("page") != null) {
-//                    page = Integer.parseInt(request.getParameter("page"));
-//                }
-//                PatientDAO dao = new PatientDAO();
-//                List<Patient> list = dao.SearchByKey(key);
-//                List<Patient> list2 = new ArrayList<>();
-//                int noOfRecords = list.size();
-//                int t;
-//                if (noOfRecords > 10 * page) {
-//                    t = recordsPerPage;
-//                } else {
-//                    t = noOfRecords % recordsPerPage;
-//                }
-//                for (int i = 0; i < t; i++) {
-//                    list2.add(list.get(i + (page - 1) * recordsPerPage));
-//                }
-//
-//                int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-//                request.setAttribute("noOfRecords", noOfRecords);
-//                request.setAttribute("ngCachLyList", list2);
-//                request.setAttribute("noOfPages", noOfPages);
-//                request.setAttribute("currentPage", page);
-//                request.setAttribute("key", key);
-//                RequestDispatcher view = request.getRequestDispatcher("search.jsp");
-//                view.forward(request, response);
-//
-//            }
-//        } else {
-//            Notification noti = new Notification("Warning", "Xin vui lòng đăng nhập để sử dụng chức năng", "warning");
-//            request.setAttribute("notify", noti);
-//            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-//            view.forward(request, response);
-//        }
+        if (user != null) {
+            if (key == null || "".equals(key)) {
+                response.sendRedirect("home.jsp");
+            } else {
+                int page = 1;
+                int recordsPerPage = 10;
+                if (request.getParameter("page") != null) {
+                    page = Integer.parseInt(request.getParameter("page"));
+                }
+                PatientDAO dao = new PatientDAO();
+                List<Patient> list = dao.SearchByKey(key);
+                List<Patient> list2 = new ArrayList<>();
+                int noOfRecords = list.size();
+                int t;
+                if (noOfRecords > 10 * page) {
+                    t = recordsPerPage;
+                } else {
+                    t = noOfRecords % recordsPerPage;
+                }
+                for (int i = 0; i < t; i++) {
+                    list2.add(list.get(i + (page - 1) * recordsPerPage));
+                }
+
+                int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+                request.setAttribute("noOfRecords", noOfRecords);
+                request.setAttribute("ngCachLyList", list2);
+                request.setAttribute("noOfPages", noOfPages);
+                request.setAttribute("currentPage", page);
+                request.setAttribute("key", key);
+                RequestDispatcher view = request.getRequestDispatcher("search.jsp");
+                view.forward(request, response);
+
+            }
+        } else {
+            Notification noti = new Notification("Warning", "Xin vui lòng đăng nhập để sử dụng chức năng", "warning");
+            request.setAttribute("notify", noti);
+            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+            view.forward(request, response);
+        }
     }
 
     /**

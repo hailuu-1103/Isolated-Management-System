@@ -177,4 +177,18 @@ public class RoomDAO implements DAO<Room> {
         }
         return null;
     }
+    
+    public int getAllBed() {
+        String sql = "SELECT SUM(bed_number) as Num FROM dbo.room" ;
+        try {
+            Statement sttm = conn.createStatement();
+            ResultSet rs = sttm.executeQuery(sql);
+            while (rs.next()) {
+                return rs.getInt("Num");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AreaDAO.class.getName()).log(Level.SEVERE, sql, ex);
+        }
+        return 0;
+    }
 }

@@ -86,13 +86,13 @@ public class UpdateAccount extends HttpServlet {
         PatientDAO patientDAO = new PatientDAO();
         HttpSession ss = request.getSession();
         Account account = (Account) ss.getAttribute("userLogin");
-        Patient patient = patientDAO.get(account.getAccountId());
+        Patient patient = patientDAO.getPatientByAccountId(account.getAccountId());
         String phone = request.getParameter("phone");
         if (phone.length() == 9 || phone.length() == 10) {  // check so dien thoai có sai ko
             //check tung thuoc tinh xem co thay doi khong
 
-            if (!request.getParameter("ten_nguoi_dung").equals(account.getPatient().getPatientName())) {
-                my_dict.put("full_name", request.getParameter("ten_nguoi_dung"));
+            if (!request.getParameter("full_name").equals(account.getPatient().getPatientName())) {
+                my_dict.put("full_name", request.getParameter("full_name"));
             }
             if (Integer.parseInt(request.getParameter("phone")) != account.getPatient().getPhoneNumber()) {
                 my_dict.put("phone", request.getParameter("phone"));
@@ -110,7 +110,7 @@ public class UpdateAccount extends HttpServlet {
                 Notification noti = new Notification("Success", "Cập nhật thành công", "success");
                 request.setAttribute("notify", noti);
                 ss.setAttribute("userLogin", dao.get(account.getAccountId()));
-                RequestDispatcher r1 = request.getRequestDispatcher("accountDetail.jsp");
+                RequestDispatcher r1 = request.getRequestDispatcher("login.jsp");
                 r1.forward(request, response);
             }
         } else {

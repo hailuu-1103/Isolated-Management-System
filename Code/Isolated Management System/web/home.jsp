@@ -79,9 +79,9 @@
             <div class="report__info-class report__info-class__orange">
                 <label class="report-label"><i class="fas fa-bed"></i> Sức chứa</label>
                 <ul class="report-label__info">
-                    <li>Hiện tại <span>10</span></li>
-                    <li>Còn trống <span>10</span></li>
-                    <li>Tổng <span>20</span></li>
+                    <li>Hiện tại <span>${requestScope.totalPatient}</span></li>
+                    <li>Còn trống <span>${requestScope.availableBed}</span></li>
+                    <li>Tổng <span>${requestScope.totalBed}</span></li>
                 </ul>
             </div>
         </div>

@@ -240,19 +240,19 @@ public class PatientDAO implements DAO<Patient> {
         return qq.size();
     }
 
-    /*
-    String fullName = request.getParameter("fullname");
-    String suspicionLevel = request.getParameter("suspicionLevel");
-    String age = request.getParameter("age");
-    int age_int = Integer.parseInt(age);
-    String gender = request.getParameter("gender");
-    String passport = request.getParameter("passport");
-    String region = request.getParameter("region");
-    String address = request.getParameter("address");
-    String phone = request.getParameter("phone");
-    int phone_int = Integer.parseInt(phone);
-    String roomName = request.getParameter("roomName");
-     */
+    public int getTotalPatients() {
+        String sql = "SELECT COUNT(*) AS Num FROM dbo.patient";
+        try {
+            Statement sttm = conn.createStatement();
+            ResultSet rs = sttm.executeQuery(sql);
+            while (rs.next()) {
+                return rs.getInt("Num");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
     @Override
     public void create(Patient p) {
         try (
