@@ -178,6 +178,11 @@ public class RoomDAO implements DAO<Room> {
         return null;
     }
     
+    /**
+     * GET TOTAL BED IN THE SYSTEM
+     * 
+     * @return total bed
+     */
     public int getAllBed() {
         String sql = "SELECT SUM(bed_number) as Num FROM dbo.room" ;
         try {
