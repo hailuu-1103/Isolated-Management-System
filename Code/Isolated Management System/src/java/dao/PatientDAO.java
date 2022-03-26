@@ -179,7 +179,7 @@ public class PatientDAO implements DAO<Patient> {
 
     /**
      * GET NoOfRecords OF PATIENTS FROM OFFSET
-     * 
+     *
      * @param offset initial row
      * @param noOfRecords number of rows
      * @return List of Patients
@@ -253,6 +253,22 @@ public class PatientDAO implements DAO<Patient> {
         }
         return 0;
     }
+
+    public int getNuPatientsInSus(String level) {
+        String sql = "SELECT COUNT(*) AS Num FROM patient p\n"
+                + "WHERE suspicion_level = '" + level + "' AND p.time_out IS null";
+        try {
+            Statement sttm = conn.createStatement();
+            ResultSet rs = sttm.executeQuery(sql);
+            while (rs.next()) {
+                return rs.getInt("Num");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+
     @Override
     public void create(Patient p) {
         try (
@@ -282,9 +298,9 @@ public class PatientDAO implements DAO<Patient> {
         hashTable.put("time_out", timeOut);
         update(patient, hashTable);
     }
-    
-  public List<Patient> SearchByKey(String key) {
-        
+
+    public List<Patient> SearchByKey(String key) {
+
         String sql = "SELECT * from patient where full_name like '%" + key + "%'";
         List<Patient> qq = new ArrayList<>();
         qq = parse(sql);

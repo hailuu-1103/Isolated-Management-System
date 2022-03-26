@@ -13,6 +13,7 @@ import entity.Patient;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,9 +62,16 @@ public class ViewListPatient extends HttpServlet {
             if (request.getParameter("page") != null) {
                 page = Integer.parseInt(request.getParameter("page"));
             }
+            List<Integer> susList = new ArrayList<Integer>();
+            susList.add(dao.getNuPatientsInSus("F0"));
+            susList.add(dao.getNuPatientsInSus("F1"));
+            susList.add(dao.getNuPatientsInSus("F2"));
+            susList.add(dao.getNuPatientsInSus("F3"));
+            susList.add(dao.getNuPatientsInSus("F4"));
             List<Patient> list = dao.getListAll((page - 1) * recordsPerPage, recordsPerPage);
             int noOfRecords = dao.getAll().size();
             int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+            request.setAttribute("susList", susList);
             request.setAttribute("noOfRecords", noOfRecords);
             request.setAttribute("list", list);
             request.setAttribute("noOfPages", noOfPages);
